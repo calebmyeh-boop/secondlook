@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Nav from "@/components/nav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,7 +25,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Nav />
+        <main className="flex flex-1 flex-col">{children}</main>
+        <footer
+          className="border-t px-6 py-8"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 text-sm sm:flex-row sm:items-center" style={{ color: "var(--muted)" }}>
+            <span className="font-bold" style={{ color: "var(--foreground)" }}>Second Look</span>
+            <p>© {new Date().getFullYear()} Second Look · Facilitating eyeglass donation for low-resource communities</p>
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }

@@ -1,386 +1,243 @@
-import {
-  ABOUT,
-  AWARDS,
-  CONTACT_EMAIL,
-  HOW_IT_WORKS,
-  IMPACT,
-  LOCATIONS,
-  MISSION,
-  PARTNERS,
-  TEAM,
-} from "./data";
+import Link from "next/link";
+import { IMPACT } from "./data";
 
-const NAV = [
-  { href: "#mission", label: "Mission" },
-  { href: "#about", label: "About" },
-  { href: "#how", label: "How it works" },
-  { href: "#impact", label: "Impact" },
-  { href: "#locations", label: "Locations" },
-  { href: "#people", label: "People" },
-  { href: "#partners", label: "Partners" },
-  ...(AWARDS.length > 0 ? [{ href: "#awards", label: "Awards" }] : []),
-];
+/* ---------- Cartoon SVG illustrations ---------- */
 
-function Logo() {
+function CartoonGlasses() {
   return (
-    <span className="inline-flex items-center gap-2">
-      <span
-        aria-hidden
-        className="grid h-8 w-8 place-items-center rounded-full bg-sage text-card"
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <circle cx="9" cy="12" r="5" stroke="currentColor" strokeWidth="2" />
-          <circle cx="19" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
-          <path d="M14 12h1" stroke="currentColor" strokeWidth="2" />
-        </svg>
-      </span>
-      <span className="text-lg font-semibold tracking-tight">Second Look</span>
-    </span>
+    <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs">
+      {/* Left lens */}
+      <rect x="10" y="20" width="70" height="45" rx="22" fill="#fef3c0" stroke="#1a1612" strokeWidth="4" />
+      {/* Right lens */}
+      <rect x="120" y="20" width="70" height="45" rx="22" fill="#fef3c0" stroke="#1a1612" strokeWidth="4" />
+      {/* Bridge */}
+      <path d="M80 38 Q100 30 120 38" stroke="#1a1612" strokeWidth="4" strokeLinecap="round" fill="none" />
+      {/* Left arm */}
+      <path d="M10 35 Q-5 35 -8 50" stroke="#1a1612" strokeWidth="4" strokeLinecap="round" fill="none" />
+      {/* Right arm */}
+      <path d="M190 35 Q205 35 208 50" stroke="#1a1612" strokeWidth="4" strokeLinecap="round" fill="none" />
+      {/* Shine dots left */}
+      <circle cx="35" cy="35" r="5" fill="white" opacity="0.7" />
+      <circle cx="48" cy="30" r="3" fill="white" opacity="0.5" />
+      {/* Shine dots right */}
+      <circle cx="145" cy="35" r="5" fill="white" opacity="0.7" />
+      <circle cx="158" cy="30" r="3" fill="white" opacity="0.5" />
+    </svg>
+  );
+}
+
+function CartoonFace({ color = "#f5c842" }: { color?: string }) {
+  return (
+    <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" width="120" height="130">
+      {/* Head */}
+      <ellipse cx="60" cy="62" rx="48" ry="52" fill={color} stroke="#1a1612" strokeWidth="3" />
+      {/* Hair */}
+      <path d="M20 45 Q30 15 60 12 Q90 15 100 45" fill="#1a1612" />
+      {/* Left eye with glasses */}
+      <rect x="22" y="52" width="30" height="22" rx="11" fill="white" stroke="#1a1612" strokeWidth="2.5" />
+      <rect x="68" y="52" width="30" height="22" rx="11" fill="white" stroke="#1a1612" strokeWidth="2.5" />
+      {/* Bridge */}
+      <path d="M52 61 Q60 57 68 61" stroke="#1a1612" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      {/* Pupils */}
+      <circle cx="37" cy="63" r="6" fill="#1a1612" />
+      <circle cx="83" cy="63" r="6" fill="#1a1612" />
+      <circle cx="39" cy="61" r="2" fill="white" />
+      <circle cx="85" cy="61" r="2" fill="white" />
+      {/* Smile */}
+      <path d="M42 90 Q60 104 78 90" stroke="#1a1612" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      {/* Cheeks */}
+      <ellipse cx="28" cy="82" rx="8" ry="5" fill="#e85b8a" opacity="0.4" />
+      <ellipse cx="92" cy="82" rx="8" ry="5" fill="#e85b8a" opacity="0.4" />
+    </svg>
+  );
+}
+
+function CartoonGlobeWithGlasses() {
+  return (
+    <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+      {/* Globe */}
+      <circle cx="80" cy="80" r="65" fill="#2aa8a0" stroke="#1a1612" strokeWidth="3" />
+      <ellipse cx="80" cy="80" rx="35" ry="65" fill="none" stroke="#1a1612" strokeWidth="2" opacity="0.4" />
+      <line x1="15" y1="80" x2="145" y2="80" stroke="#1a1612" strokeWidth="2" opacity="0.4" />
+      <path d="M25 50 Q80 35 135 50" stroke="#1a1612" strokeWidth="2" opacity="0.4" fill="none" />
+      <path d="M25 110 Q80 125 135 110" stroke="#1a1612" strokeWidth="2" opacity="0.4" fill="none" />
+      {/* Tiny glasses on globe */}
+      <rect x="42" y="70" width="28" height="18" rx="9" fill="#fef3c0" stroke="#1a1612" strokeWidth="2" />
+      <rect x="90" y="70" width="28" height="18" rx="9" fill="#fef3c0" stroke="#1a1612" strokeWidth="2" />
+      <path d="M70 78 Q80 74 90 78" stroke="#1a1612" strokeWidth="2" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
+function CartoonHeart() {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+      <path d="M40 65 C40 65 8 48 8 28 C8 18 18 10 30 14 C34 16 38 20 40 24 C42 20 46 16 50 14 C62 10 72 18 72 28 C72 48 40 65 40 65Z" fill="#e85b8a" stroke="#1a1612" strokeWidth="2.5" />
+      {/* Tiny glasses inside heart */}
+      <rect x="22" y="30" width="14" height="9" rx="4.5" fill="white" stroke="#1a1612" strokeWidth="1.5" />
+      <rect x="44" y="30" width="14" height="9" rx="4.5" fill="white" stroke="#1a1612" strokeWidth="1.5" />
+      <path d="M36 34 Q40 32 44 34" stroke="#1a1612" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+    </svg>
   );
 }
 
 export default function Home() {
-  const usTeam = TEAM.filter((p) => p.location !== "Sierra Leone");
-  const slTeam = TEAM.filter((p) => p.location === "Sierra Leone");
-  const otherLocations = Array.from(
-    new Set(
-      TEAM.filter((p) => p.location !== "United States" && p.location !== "Sierra Leone").map(
-        (p) => p.location
-      )
-    )
-  );
-
   return (
     <div className="flex flex-1 flex-col">
-      {/* ---------------------------------------------------------------- Nav */}
-      <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur">
-        <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="#top">
-            <Logo />
-          </a>
-          <div className="hidden gap-6 text-sm text-muted sm:flex">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition-colors hover:text-foreground"
+      {/* ── Hero ── */}
+      <section
+        className="relative overflow-hidden px-6 pt-16 pb-20 sm:pt-24 sm:pb-28"
+        style={{ background: "linear-gradient(135deg, #fdf9f4 0%, #fef3c0 50%, #fdf9f4 100%)" }}
+      >
+        {/* Floating cartoon accents */}
+        <div className="pointer-events-none absolute top-8 right-8 opacity-30 sm:opacity-60 hidden sm:block">
+          <CartoonGlasses />
+        </div>
+        <div className="pointer-events-none absolute bottom-10 right-24 opacity-20 sm:opacity-40 hidden sm:block rotate-12">
+          <CartoonGlasses />
+        </div>
+
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
+            <div className="flex-1">
+              <span
+                className="inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6"
+                style={{ background: "var(--sage)", color: "white" }}
               >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            Get involved
-          </a>
-        </nav>
-      </header>
-
-      <main id="top" className="flex flex-1 flex-col">
-        {/* ------------------------------------------------------------- Hero */}
-        <section className="mx-auto w-full max-w-5xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-clay-dark">
-            Vision care that stays in the community
-          </p>
-          <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-            Donated glasses, delivered by the people who know their community
-            best.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-            Second Look connects eyeglass donations from Omaha with clinics in
-            low-resource communities — and gives local workers the tools to run
-            distribution on their own.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#about"
-              className="rounded-full bg-sage px-6 py-3 text-sm font-medium text-card transition-colors hover:bg-sage-dark"
-            >
-              Our story
-            </a>
-            <a
-              href="#people"
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:bg-card"
-            >
-              Meet the people
-            </a>
-          </div>
-        </section>
-
-        {/* ---------------------------------------------------------- Mission */}
-        <section
-          id="mission"
-          className="border-y border-border bg-card px-6 py-20"
-        >
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-              Our mission
-            </h2>
-            <p className="mt-6 max-w-3xl text-2xl leading-10 font-medium sm:text-3xl">
-              {MISSION}
-            </p>
-          </div>
-        </section>
-
-        {/* ------------------------------------------------------------ About */}
-        <section id="about" className="mx-auto w-full max-w-5xl px-6 py-20">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-            {ABOUT.heading}
-          </h2>
-          <div className="mt-6 max-w-3xl space-y-5">
-            {ABOUT.body.map((para, i) => (
-              <p key={i} className="text-lg leading-8 text-muted">
-                {para}
+                Vision care that stays in the community
+              </span>
+              <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-7xl">
+                <span style={{ color: "var(--sage-dark)" }}>Second Look:</span>
+                <br />
+                <span style={{ color: "var(--foreground)" }}>
+                  Donated glasses, delivered by the people who know their community best.
+                </span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-8" style={{ color: "var(--muted)" }}>
+                We connect eyeglass donations from Omaha with clinics in Sierra Leone — and train local workers to run distribution entirely on their own.
               </p>
-            ))}
-          </div>
-        </section>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/about"
+                  className="rounded-full px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90"
+                  style={{ background: "var(--sage)" }}
+                >
+                  Our story
+                </Link>
+                <Link
+                  href="/people"
+                  className="rounded-full border-2 px-7 py-3.5 text-base font-bold transition-colors hover:opacity-80"
+                  style={{ borderColor: "var(--foreground)", color: "var(--foreground)" }}
+                >
+                  Meet the people
+                </Link>
+              </div>
+            </div>
 
-        {/* ----------------------------------------------------- How it works */}
-        <section
-          id="how"
-          className="border-y border-border bg-card px-6 py-20"
-        >
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-              How it works
-            </h2>
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              {HOW_IT_WORKS.map((step, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="text-sm font-mono text-sage">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-                  <p className="mt-2 text-muted leading-7">{step.body}</p>
-                </div>
-              ))}
+            {/* Cartoon panel */}
+            <div className="flex-shrink-0 flex flex-col items-center gap-6">
+              <div className="flex gap-4 items-end">
+                <CartoonFace color="#f5c842" />
+                <CartoonFace color="#2aa8a0" />
+                <CartoonFace color="#e07b39" />
+              </div>
+              <p className="text-sm font-medium" style={{ color: "var(--muted)" }}>
+                Every pair finds the right eyes 👓
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ----------------------------------------------------------- Impact */}
-        <section id="impact" className="mx-auto w-full max-w-5xl px-6 py-20">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-            Our impact
+      {/* ── Impact numbers strip ── */}
+      <section
+        className="px-6 py-12"
+        style={{ background: "var(--sage)", color: "white" }}
+      >
+        <div className="mx-auto max-w-6xl grid grid-cols-2 gap-6 sm:grid-cols-4">
+          {IMPACT.stats.map((s, i) => (
+            <div key={i} className="text-center">
+              <p className="text-4xl font-black">{s.value}</p>
+              <p className="mt-1 text-sm font-medium opacity-80">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── What we do cards ── */}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: "var(--clay)" }}>
+            What we do
+          </p>
+          <h2 className="text-4xl font-black mb-12" style={{ color: "var(--foreground)" }}>
+            Simple idea. Real impact.
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-4">
-            {IMPACT.stats.map((s, i) => (
+          <div className="grid gap-6 sm:grid-cols-3">
+            {[
+              { emoji: "🥽", title: "Collect donations", body: "Prescription and reading glasses donated by communities in Omaha.", color: "#fef3c0" },
+              { emoji: "🌍", title: "Ship to clinics", body: "Glasses go to partner clinics in Sierra Leone and beyond.", color: "#ccfbf1" },
+              { emoji: "🤝", title: "Train local workers", body: "Clinic staff are trained on our inventory system and run distribution independently.", color: "#fce7f3" },
+            ].map((card, i) => (
               <div
                 key={i}
-                className="rounded-xl border border-border bg-card p-6 text-center"
+                className="rounded-2xl p-7 border-2"
+                style={{ background: card.color, borderColor: "var(--border)" }}
               >
-                <p className="text-4xl font-semibold text-sage">{s.value}</p>
-                <p className="mt-2 text-sm text-muted">{s.label}</p>
+                <span className="text-4xl">{card.emoji}</span>
+                <h3 className="mt-4 text-xl font-bold">{card.title}</h3>
+                <p className="mt-2 leading-7" style={{ color: "var(--muted)" }}>{card.body}</p>
               </div>
             ))}
           </div>
-          {IMPACT.note && (
-            <p className="mt-6 text-sm text-muted">{IMPACT.note}</p>
-          )}
-        </section>
-
-        {/* --------------------------------------------------------- Locations */}
-        <section
-          id="locations"
-          className="border-y border-border bg-card px-6 py-20"
-        >
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-              Where we work
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-              We started in Sierra Leone and are growing. Every location has
-              trained local workers running distribution independently.
-            </p>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              {LOCATIONS.map((loc, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-border bg-background p-6"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <p className="text-lg font-semibold">{loc.country}</p>
-                      <p className="text-sm text-muted">{loc.city}</p>
-                    </div>
-                    {loc.active && (
-                      <span className="rounded-full bg-sage/20 px-3 py-1 text-xs font-medium text-sage-dark">
-                        Active
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-4 text-sm leading-7 text-muted">
-                    {loc.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ----------------------------------------------------------- People */}
-        <section id="people" className="mx-auto w-full max-w-5xl px-6 py-20">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-            The people behind Second Look
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-            From volunteers in Omaha to the clinic workers running distribution
-            on the ground — this work depends on all of them.
-          </p>
-
-          {/* Sierra Leone workers — highlighted */}
-          {slTeam.length > 0 && (
-            <div className="mt-12">
-              <h3 className="text-lg font-semibold">Sierra Leone — Clinic Workers</h3>
-              <p className="mt-1 text-sm text-muted">
-                These are the people on the ground making it happen every day.
-              </p>
-              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {slTeam.map((p, i) => (
-                  <li
-                    key={i}
-                    className="rounded-xl border border-sage/40 bg-sage/10 p-5"
-                  >
-                    <p className="font-semibold">{p.name}</p>
-                    <p className="mt-1 text-sm text-muted">{p.role}</p>
-                    {p.bio && (
-                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* US team */}
-          {usTeam.length > 0 && (
-            <div className="mt-12">
-              <h3 className="text-lg font-semibold">United States — Omaha Team</h3>
-              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {usTeam.map((p, i) => (
-                  <li
-                    key={i}
-                    className="rounded-xl border border-border bg-card p-5"
-                  >
-                    <p className="font-semibold">{p.name}</p>
-                    <p className="mt-1 text-sm text-muted">{p.role}</p>
-                    {p.bio && (
-                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Other locations */}
-          {otherLocations.map((loc) => (
-            <div className="mt-12" key={loc}>
-              <h3 className="text-lg font-semibold">{loc}</h3>
-              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {TEAM.filter((p) => p.location === loc).map((p, i) => (
-                  <li
-                    key={i}
-                    className="rounded-xl border border-border bg-card p-5"
-                  >
-                    <p className="font-semibold">{p.name}</p>
-                    <p className="mt-1 text-sm text-muted">{p.role}</p>
-                    {p.bio && (
-                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-
-        {/* --------------------------------------------------------- Partners */}
-        <section
-          id="partners"
-          className="border-y border-border bg-card px-6 py-20"
-        >
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-              Omaha partnerships
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-              Our work starts at home. These Omaha organizations help us collect
-              glasses, run drives, and get donations where they&apos;re needed.
-            </p>
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {PARTNERS.map((p, i) => (
-                <li
-                  key={i}
-                  className="rounded-xl border border-border bg-background p-5"
-                >
-                  <p className="font-semibold">{p.name}</p>
-                  {p.note && (
-                    <p className="mt-1 text-sm text-muted">{p.note}</p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* ----------------------------------------------------------- Awards */}
-        {AWARDS.length > 0 && (
-          <section id="awards" className="mx-auto w-full max-w-5xl px-6 py-20">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-              Awards & recognition
-            </h2>
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {AWARDS.map((a, i) => (
-                <li
-                  key={i}
-                  className="rounded-xl border border-border bg-card p-5"
-                >
-                  <p className="font-semibold">{a.title}</p>
-                  <p className="mt-1 text-sm text-muted">
-                    {a.organization} · {a.year}
-                  </p>
-                  {a.note && (
-                    <p className="mt-2 text-sm text-muted">{a.note}</p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {/* ------------------------------------------------------------- CTA */}
-        <section className="border-t border-border bg-sage px-6 py-20 text-card">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Have glasses to donate, or want to partner with us?
-            </h2>
-            <p className="mt-4 max-w-xl text-lg leading-8 text-card/80">
-              We&apos;d love to hear from you.
-            </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-8 inline-block rounded-full bg-card px-6 py-3 text-sm font-medium text-foreground transition-opacity hover:opacity-90"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </section>
-      </main>
-
-      {/* --------------------------------------------------------------- Footer */}
-      <footer className="border-t border-border px-6 py-10">
-        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-4 text-sm text-muted sm:flex-row sm:items-center">
-          <Logo />
-          <p>
-            © {new Date().getFullYear()} Second Look. Facilitating eyeglass
-            donation for low-resource communities.
-          </p>
         </div>
-      </footer>
+      </section>
+
+      {/* ── Explore pages strip ── */}
+      <section className="px-6 py-16" style={{ background: "var(--foreground)", color: "white" }}>
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-3xl font-black mb-8">Explore Second Look</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { href: "/mission", label: "Our Mission", desc: "Why we do this work", color: "var(--sage)" },
+              { href: "/impact", label: "Impact", desc: "Numbers that matter", color: "var(--clay)" },
+              { href: "/locations", label: "Locations", desc: "Where we work", color: "var(--teal)" },
+              { href: "/people", label: "People", desc: "The team & workers", color: "var(--pink)" },
+            ].map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="group rounded-2xl p-6 transition-transform hover:-translate-y-1"
+                style={{ background: card.color }}
+              >
+                <p className="text-lg font-bold text-white">{card.label}</p>
+                <p className="mt-1 text-sm text-white/80">{card.desc}</p>
+                <span className="mt-4 block text-white font-bold">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-6xl flex flex-col items-center text-center gap-6">
+          <CartoonHeart />
+          <h2 className="text-4xl font-black max-w-xl" style={{ color: "var(--foreground)" }}>
+            Have glasses to donate?
+          </h2>
+          <p className="text-lg max-w-md" style={{ color: "var(--muted)" }}>
+            Every donated pair could change someone's ability to see, work, and live fully.
+          </p>
+          <Link
+            href="/contact"
+            className="rounded-full px-8 py-4 text-base font-bold text-white"
+            style={{ background: "var(--clay)" }}
+          >
+            Get in touch →
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
