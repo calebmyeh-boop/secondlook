@@ -1,21 +1,27 @@
 import {
-  MISSION,
+  ABOUT,
+  AWARDS,
+  CONTACT_EMAIL,
   HOW_IT_WORKS,
+  IMPACT,
+  LOCATIONS,
+  MISSION,
   PARTNERS,
   TEAM,
-  CONTACT_EMAIL,
 } from "./data";
 
 const NAV = [
   { href: "#mission", label: "Mission" },
+  { href: "#about", label: "About" },
   { href: "#how", label: "How it works" },
-  { href: "#partners", label: "Partners" },
+  { href: "#impact", label: "Impact" },
+  { href: "#locations", label: "Locations" },
   { href: "#people", label: "People" },
+  { href: "#partners", label: "Partners" },
+  ...(AWARDS.length > 0 ? [{ href: "#awards", label: "Awards" }] : []),
 ];
 
 function Logo() {
-  // Placeholder mark — swap for Nathan's logo (drop an SVG/PNG in /public
-  // and replace this with <Image src="/logo.svg" ... />).
   return (
     <span className="inline-flex items-center gap-2">
       <span
@@ -34,7 +40,15 @@ function Logo() {
 }
 
 export default function Home() {
-  const locations = Array.from(new Set(TEAM.map((p) => p.location)));
+  const usTeam = TEAM.filter((p) => p.location !== "Sierra Leone");
+  const slTeam = TEAM.filter((p) => p.location === "Sierra Leone");
+  const otherLocations = Array.from(
+    new Set(
+      TEAM.filter((p) => p.location !== "United States" && p.location !== "Sierra Leone").map(
+        (p) => p.location
+      )
+    )
+  );
 
   return (
     <div className="flex flex-1 flex-col">
@@ -44,7 +58,7 @@ export default function Home() {
           <a href="#top">
             <Logo />
           </a>
-          <div className="hidden gap-8 text-sm text-muted sm:flex">
+          <div className="hidden gap-6 text-sm text-muted sm:flex">
             {NAV.map((item) => (
               <a
                 key={item.href}
@@ -81,10 +95,10 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="#how"
+              href="#about"
               className="rounded-full bg-sage px-6 py-3 text-sm font-medium text-card transition-colors hover:bg-sage-dark"
             >
-              See how it works
+              Our story
             </a>
             <a
               href="#people"
@@ -110,22 +124,178 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ----------------------------------------------------- How it works */}
-        <section id="how" className="mx-auto w-full max-w-5xl px-6 py-20">
+        {/* ------------------------------------------------------------ About */}
+        <section id="about" className="mx-auto w-full max-w-5xl px-6 py-20">
           <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-            How it works
+            {ABOUT.heading}
           </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {HOW_IT_WORKS.map((step, i) => (
-              <div key={i} className="flex flex-col">
-                <span className="text-sm font-mono text-sage">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-2 text-muted leading-7">{step.body}</p>
+          <div className="mt-6 max-w-3xl space-y-5">
+            {ABOUT.body.map((para, i) => (
+              <p key={i} className="text-lg leading-8 text-muted">
+                {para}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* ----------------------------------------------------- How it works */}
+        <section
+          id="how"
+          className="border-y border-border bg-card px-6 py-20"
+        >
+          <div className="mx-auto max-w-5xl">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
+              How it works
+            </h2>
+            <div className="mt-10 grid gap-8 sm:grid-cols-3">
+              {HOW_IT_WORKS.map((step, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="text-sm font-mono text-sage">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-muted leading-7">{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ----------------------------------------------------------- Impact */}
+        <section id="impact" className="mx-auto w-full max-w-5xl px-6 py-20">
+          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
+            Our impact
+          </h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-4">
+            {IMPACT.stats.map((s, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-border bg-card p-6 text-center"
+              >
+                <p className="text-4xl font-semibold text-sage">{s.value}</p>
+                <p className="mt-2 text-sm text-muted">{s.label}</p>
               </div>
             ))}
           </div>
+          {IMPACT.note && (
+            <p className="mt-6 text-sm text-muted">{IMPACT.note}</p>
+          )}
+        </section>
+
+        {/* --------------------------------------------------------- Locations */}
+        <section
+          id="locations"
+          className="border-y border-border bg-card px-6 py-20"
+        >
+          <div className="mx-auto max-w-5xl">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
+              Where we work
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
+              We started in Sierra Leone and are growing. Every location has
+              trained local workers running distribution independently.
+            </p>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {LOCATIONS.map((loc, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-border bg-background p-6"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-lg font-semibold">{loc.country}</p>
+                      <p className="text-sm text-muted">{loc.city}</p>
+                    </div>
+                    {loc.active && (
+                      <span className="rounded-full bg-sage/20 px-3 py-1 text-xs font-medium text-sage-dark">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-4 text-sm leading-7 text-muted">
+                    {loc.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ----------------------------------------------------------- People */}
+        <section id="people" className="mx-auto w-full max-w-5xl px-6 py-20">
+          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
+            The people behind Second Look
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
+            From volunteers in Omaha to the clinic workers running distribution
+            on the ground — this work depends on all of them.
+          </p>
+
+          {/* Sierra Leone workers — highlighted */}
+          {slTeam.length > 0 && (
+            <div className="mt-12">
+              <h3 className="text-lg font-semibold">Sierra Leone — Clinic Workers</h3>
+              <p className="mt-1 text-sm text-muted">
+                These are the people on the ground making it happen every day.
+              </p>
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {slTeam.map((p, i) => (
+                  <li
+                    key={i}
+                    className="rounded-xl border border-sage/40 bg-sage/10 p-5"
+                  >
+                    <p className="font-semibold">{p.name}</p>
+                    <p className="mt-1 text-sm text-muted">{p.role}</p>
+                    {p.bio && (
+                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* US team */}
+          {usTeam.length > 0 && (
+            <div className="mt-12">
+              <h3 className="text-lg font-semibold">United States — Omaha Team</h3>
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {usTeam.map((p, i) => (
+                  <li
+                    key={i}
+                    className="rounded-xl border border-border bg-card p-5"
+                  >
+                    <p className="font-semibold">{p.name}</p>
+                    <p className="mt-1 text-sm text-muted">{p.role}</p>
+                    {p.bio && (
+                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Other locations */}
+          {otherLocations.map((loc) => (
+            <div className="mt-12" key={loc}>
+              <h3 className="text-lg font-semibold">{loc}</h3>
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {TEAM.filter((p) => p.location === loc).map((p, i) => (
+                  <li
+                    key={i}
+                    className="rounded-xl border border-border bg-card p-5"
+                  >
+                    <p className="font-semibold">{p.name}</p>
+                    <p className="mt-1 text-sm text-muted">{p.role}</p>
+                    {p.bio && (
+                      <p className="mt-2 text-sm leading-6 text-muted">{p.bio}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
 
         {/* --------------------------------------------------------- Partners */}
@@ -137,7 +307,7 @@ export default function Home() {
             <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
               Omaha partnerships
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
               Our work starts at home. These Omaha organizations help us collect
               glasses, run drives, and get donations where they&apos;re needed.
             </p>
@@ -157,35 +327,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ----------------------------------------------------------- People */}
-        <section id="people" className="mx-auto w-full max-w-5xl px-6 py-20">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
-            The people behind Second Look
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-            From volunteers in Omaha to the clinic staff running distribution on
-            the ground — this work depends on all of them.
-          </p>
-
-          <div className="mt-12 space-y-12">
-            {locations.map((loc) => (
-              <div key={loc}>
-                <h3 className="text-lg font-semibold">{loc}</h3>
-                <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {TEAM.filter((p) => p.location === loc).map((p, i) => (
-                    <li
-                      key={i}
-                      className="rounded-xl border border-border bg-card p-5"
-                    >
-                      <p className="font-semibold">{p.name}</p>
-                      <p className="mt-1 text-sm text-muted">{p.role}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* ----------------------------------------------------------- Awards */}
+        {AWARDS.length > 0 && (
+          <section id="awards" className="mx-auto w-full max-w-5xl px-6 py-20">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-clay-dark">
+              Awards & recognition
+            </h2>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {AWARDS.map((a, i) => (
+                <li
+                  key={i}
+                  className="rounded-xl border border-border bg-card p-5"
+                >
+                  <p className="font-semibold">{a.title}</p>
+                  <p className="mt-1 text-sm text-muted">
+                    {a.organization} · {a.year}
+                  </p>
+                  {a.note && (
+                    <p className="mt-2 text-sm text-muted">{a.note}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* ------------------------------------------------------------- CTA */}
         <section className="border-t border-border bg-sage px-6 py-20 text-card">
