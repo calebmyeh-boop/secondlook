@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import React from "react";
 import Nav from "@/components/nav";
 import "./globals.css";
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     "Second Look facilitates eyeglass donation to low-resource communities and equips local workers with an inventory system, enabling clinics to independently sustain distribution within their own communities.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
