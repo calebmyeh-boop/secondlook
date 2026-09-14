@@ -30,7 +30,7 @@ function Logo() {
           <path d="M13 12h2" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
         </svg>
       </span>
-      <span className="text-lg font-bold tracking-tight" style={{ color: "var(--foreground)" }}>
+      <span className="text-2xl font-bold tracking-tight" style={{ color: "var(--foreground)" }}>
         Second Look
       </span>
     </span>
