@@ -107,7 +107,7 @@ export default function Home() {
                 Vision care that stays in the community
               </span>
               <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-7xl">
-                <span style={{ color: "var(--sage-dark)" }}>Second Look:</span>
+                <span style={{ color: "var(--sage-dark)", fontSize: "clamp(3.5rem, 10vw, 7rem)" }}>Second Look:</span>
                 <br />
                 <span style={{ color: "var(--foreground)" }}>
                   Donated glasses, delivered by the people who know their community best.
