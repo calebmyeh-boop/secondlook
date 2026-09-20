@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { CONTACT_EMAIL } from "@/app/data";
 
 const NAV = [
   { href: "/", label: "Home" },
