@@ -87,7 +87,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden px-6 pt-16 pb-20 sm:pt-24 sm:pb-28"
-        style={{ background: "linear-gradient(135deg, #fdf9f4 0%, #fef3c0 50%, #fdf9f4 100%)" }}
+        style={{ background: "linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e8f5e9 100%)" }}
       >
         {/* Floating cartoon accents */}
         <div className="pointer-events-none absolute top-8 right-8 opacity-30 sm:opacity-60 hidden sm:block">
