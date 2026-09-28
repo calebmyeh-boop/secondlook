@@ -10,8 +10,9 @@ export default function Home() {
         <p className="mb-4 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--clay-dark)" }}>
           Vision care that stays in the community
         </p>
-        <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-          <strong>Second Look:</strong> Donated glasses, delivered by the people who know their community best.
+        <h1 className="max-w-5xl font-semibold leading-tight tracking-tight">
+          <strong style={{ display: "block", fontSize: "clamp(4rem, 14vw, 10rem)", lineHeight: 1 }}>Second Look</strong>
+          <span className="text-2xl sm:text-3xl font-normal" style={{ color: "var(--muted)" }}>Donated glasses, delivered by the people who know their community best.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8" style={{ color: "var(--muted)" }}>
           Second Look connects eyeglass donations from Omaha with clinics in low-resource communities — and gives local workers the tools to run distribution on their own.
