@@ -5,7 +5,7 @@ export const metadata = { title: "Contact — Second Look" };
 export default function ContactPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-5xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+      <section className="fade-in mx-auto w-full max-w-5xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--clay-dark)" }}>
           Get involved
         </p>
