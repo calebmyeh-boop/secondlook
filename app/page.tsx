@@ -11,7 +11,7 @@ export default function Home() {
           Vision care that stays in the community
         </p>
         <h1 className="max-w-5xl font-semibold leading-tight tracking-tight">
-          <strong style={{ display: "block", fontSize: "clamp(4rem, 14vw, 10rem)", lineHeight: 1 }}>Second Look</strong>
+          <strong style={{ display: "block", fontSize: "clamp(3rem, 9vw, 8rem)", lineHeight: 1, whiteSpace: "nowrap" }}>Second Look</strong>
           <span className="text-2xl sm:text-3xl font-normal" style={{ color: "var(--muted)" }}>Donated glasses, delivered by the people who know their community best.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8" style={{ color: "var(--muted)" }}>
