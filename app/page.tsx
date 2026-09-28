@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-1 flex-col">
       {/* Hero */}
       <section className="w-full px-6 pt-20 pb-16 sm:pt-28 sm:pb-24" style={{ background: "#dbeafe" }}>
-        <div className="mx-auto max-w-5xl">
+        <div className="fade-in mx-auto max-w-5xl">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--clay-dark)" }}>
           Vision care that stays in the community
         </p>
