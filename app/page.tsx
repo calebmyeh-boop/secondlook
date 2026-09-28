@@ -5,7 +5,8 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       {/* Hero */}
-      <section className="mx-auto w-full max-w-5xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+      <section className="w-full px-6 pt-20 pb-16 sm:pt-28 sm:pb-24" style={{ background: "#dbeafe" }}>
+        <div className="mx-auto max-w-5xl">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--clay-dark)" }}>
           Vision care that stays in the community
         </p>
@@ -30,6 +31,7 @@ export default function Home() {
           >
             Meet the people
           </Link>
+        </div>
         </div>
       </section>
 
