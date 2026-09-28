@@ -11,7 +11,7 @@ export default function Home() {
           Vision care that stays in the community
         </p>
         <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-          Second Look: Donated glasses, delivered by the people who know their community best.
+          <strong>Second Look:</strong> Donated glasses, delivered by the people who know their community best.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8" style={{ color: "var(--muted)" }}>
           Second Look connects eyeglass donations from Omaha with clinics in low-resource communities — and gives local workers the tools to run distribution on their own.
